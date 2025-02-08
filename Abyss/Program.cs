@@ -21,8 +21,8 @@ namespace Abyss
             Random rnd = new Random();
 
             // НАЧАЛО ИГРЫ
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Добро пожаловать в игру Подземелье!\nПройдите все 9 комнат, прежде чем сразиться с боссом в десятой комнате!");
-            GameStatistic(room);
 
             for (int i = 0; i < dungeonMap.Length; i++)
             {
@@ -31,6 +31,7 @@ namespace Abyss
 
             for (int i = 0; i < dungeonMap.Length; i++)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine($"\n----------------------------------Комната {i}----------------------------------");
                 switch (dungeonMap[i])
                 {
@@ -43,17 +44,6 @@ namespace Abyss
 
             Console.WriteLine("\nВы прошли все комнаты! Подготовьтесь к битве с боссом в десятой комнате!\n");
             Boss(ref health, ref arrow, inventory, poison, none);
-        }
-
-        /// <summary>
-        /// Метод мониторинга статистики пройденных уровней
-        /// </summary>
-        /// <param name="roomsCompleted"></param>
-        static void GameStatistic(int roomsCompleted)
-        {
-            int totalRooms = 10;
-            int roomsCount = totalRooms - roomsCompleted; // Осталось комнат
-            Console.WriteLine($"Комнат пройдено: {roomsCompleted}\nОсталось комнат: {roomsCount}");
         }
 
         /// <summary>
@@ -82,6 +72,7 @@ namespace Abyss
         /// <returns></returns>
         static int Monster(ref int health, ref int arrow, string[] inventory, string poison, string none)
         {
+            Console.ForegroundColor = ConsoleColor.Magenta;
             int damage, heal; //Получаемый урон от монстра и получаемые НР от зелья
             Random random = new Random();
             Console.WriteLine("\nНа пути к выходу Вас настиг Монстр!\n");
@@ -131,6 +122,10 @@ namespace Abyss
                                 Console.WriteLine($"\nМонстр атакует!\t -{damage}HP\n");
                                 health -= damage;
                             }
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n[ У Вас закончились зелья ]\n");
                         }
                     }
                 }
@@ -194,6 +189,10 @@ namespace Abyss
                                 health -= damage;
                             }
                         }
+                        else
+                        {
+                            Console.WriteLine("\n[ У Вас закончились зелья ]\n");
+                        }
                     }
                 }
                 if (monsterHealth < health)
@@ -209,6 +208,7 @@ namespace Abyss
         /// </summary>
         static void Pitfall(ref int health)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Random random = new Random();
             int damage = random.Next(10, 20);
             health -= damage;
@@ -224,6 +224,7 @@ namespace Abyss
         /// </summary>
         static void Chester(ref int money, ref int arrow, string[] inventory, string poison, string none)
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
             Random rnd = new Random();
             int bonus;
             Console.WriteLine("\n[ Отгадайте загадку, чтобы идти дальше ]\nСколько хвостов у девяти котов?");
@@ -304,6 +305,7 @@ namespace Abyss
         /// <returns></returns>
         static int Boss(ref int health, ref int arrow, string[] inventory, string poison, string none)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             int damage, heal;
             Random random = new Random();
             Console.WriteLine("\nВы столкнулись с Боссом!\n");
@@ -419,6 +421,10 @@ namespace Abyss
                                 Console.WriteLine($"\nМонстр атакует!\t -{damage}HP\n");
                                 health -= damage;
                             }
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n[ У Вас закончились зелья ]\n");
                         }
                     }
                 }
