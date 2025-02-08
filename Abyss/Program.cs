@@ -100,7 +100,7 @@ namespace Abyss
                         Console.WriteLine($"\nМонстр атакует!\t -{damage}HP\n");
                         health -= damage;
                     }
-                    else
+                    else if (Console.ReadLine() == "2")
                     {
                         if (inventory.Contains(poison)) //проверка на наличие зелья в инвентаре
                         {
@@ -287,13 +287,21 @@ namespace Abyss
             }
         }
 
-        
+        /// <summary>
+        /// Событие битвы с финальным боссом
+        /// </summary>
+        /// <param name="health"> Здоровье игрока </param>
+        /// <param name="arrow"> Стрелы игрока </param>
+        /// <param name="inventory"> Инвентарь игрока </param>
+        /// <param name="poison"> Восстанавливающие зелья </param>
+        /// <param name="none"> --- </param>
+        /// <returns></returns>
         static int Boss(ref int health, ref int arrow, string[] inventory, string poison, string none)
         {
             int damage, heal;
             Random random = new Random();
             Console.WriteLine("\nВы столкнулись с Боссом!\n");
-            int monsterHealth = 100;
+            int monsterHealth = 80; //НР Босса
             Console.WriteLine("Выберите оружие:\n1) Меч - наносит 10-20 урона\n2) Лук - наносит 5-15 урона\n");
             int weapon = int.Parse(Console.ReadLine());
             if (weapon == 1)//алгоритм для меча
@@ -321,7 +329,7 @@ namespace Abyss
                             if (health >= 100) //если здоровье полное, зелье не потратится, игрок пропустит ход
                             {
                                 Console.WriteLine("\n[У вас максимальное HP]\n");
-                                damage = random.Next(10, 20); ;
+                                damage = random.Next(10, 20);
                                 Console.WriteLine($"\nМонстр атакует!\t -{damage}HP\n");
                                 health -= damage;
                             }
