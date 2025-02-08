@@ -42,6 +42,20 @@ namespace Abyss
                 int roomsCount = totalRooms - roomsCompleted; // Осталось комнат
                 Console.WriteLine($"Комнат пройдено: {roomsCompleted}\nОсталось комнат: {roomsCount}");
             }
+        /// <summary>
+        /// Показ инвентаря, взаимодействие ДОДЕЛАТЬ
+        /// </summary>
+        /// <param name="inv"></param>
+        static void ShowInventory(string[] inv)
+        {
+            int i = 1;
+            Console.WriteLine("\nИНВЕНТАРЬ\n");
+            foreach (var elem in inv)
+            {
+                Console.WriteLine($"[{i}]" + elem);
+                i++;
+            }
+        }
 
     }
 }
