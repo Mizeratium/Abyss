@@ -72,11 +72,17 @@ namespace Abyss
         }
 
         /// <summary>
-        /// Ивент с битвой с монстром
+        /// Ивент битвы с монстром
         /// </summary>
+        /// <param name="health"> Здоровье игрока </param>
+        /// <param name="arrow"> Стрелы игрока </param>
+        /// <param name="inventory"> Инвентарь игрока </param>
+        /// <param name="poison"> Восстанавливающее зелье </param>
+        /// <param name="none"> --- </param>
+        /// <returns></returns>
         static int Monster(ref int health, ref int arrow, string[] inventory, string poison, string none)
         {
-            int damage, heal;
+            int damage, heal; //Получаемый урон от монстра и получаемые НР от зелья
             Random random = new Random();
             Console.WriteLine("\nНа пути к выходу Вас настиг Монстр!\n");
             int monsterHealth = random.Next(20, 50); //случайное кол-во НР 
@@ -92,10 +98,10 @@ namespace Abyss
                         break;
                     }
                     Console.WriteLine($"Ваше здоровье {health}\tЗдоровье противника {monsterHealth}");
-                    monsterHealth -= random.Next(10, 20);
                     Console.WriteLine($"[ Выберите действие ]\t1 - Удар\t 2 - Использовать зелье\n");
                     if (Console.ReadLine() == "1")
                     {
+                        monsterHealth -= random.Next(10, 20);
                         damage = random.Next(5, 15);
                         Console.WriteLine($"\nМонстр атакует!\t -{damage}HP\n");
                         health -= damage;
@@ -143,7 +149,6 @@ namespace Abyss
                         break;
                     }
                     Console.WriteLine($"Ваше здоровье {health}\tЗдоровье противника {monsterHealth}");
-                    monsterHealth -= random.Next(10, 20);
                     Console.WriteLine($"[Осталось стрел - {arrow} ]\n[Выберите действие]\t1 - Удар\t 2 - Использовать зелье\n");
                     if (Console.ReadLine() == "1")
                     {
@@ -156,6 +161,7 @@ namespace Abyss
                         }
                         else
                         {
+                            monsterHealth -= random.Next(10, 20);
                             damage = random.Next(5, 15);
                             Console.WriteLine($"\nМонстр атакует!\t -{damage}HP\n");
                             health -= damage;
@@ -314,10 +320,10 @@ namespace Abyss
                         break;
                     }
                     Console.WriteLine($"Ваше здоровье {health}\tЗдоровье противника {monsterHealth}");
-                    monsterHealth -= random.Next(10, 20);
                     Console.WriteLine("[ Выберите действие ]\t1 - Удар\t 2 - Использовать зелье\n");
                     if (Console.ReadLine() == "1")
                     {
+                        monsterHealth -= random.Next(10, 20);
                         damage = random.Next(10, 20);
                         Console.WriteLine($"\nМонстр атакует!\t -{damage}HP\n");
                         health -= damage;
@@ -369,7 +375,6 @@ namespace Abyss
                         break;
                     }
                     Console.WriteLine($"Ваше здоровье {health}\tЗдоровье противника {monsterHealth}");
-                    monsterHealth -= random.Next(10, 20);
                     Console.WriteLine($"[ Осталось стрел - {arrow} ]\n[ Выберите действие ]\t1 - Удар\t 2 - Использовать зелье\n");
                     if (Console.ReadLine() == "1")
                     {
@@ -382,6 +387,7 @@ namespace Abyss
                         }
                         else
                         {
+                            monsterHealth -= random.Next(10, 20);
                             damage = random.Next(10, 20);
                             Console.WriteLine($"\nМонстр атакует!\t -{damage}HP\n");
                             health -= damage;
